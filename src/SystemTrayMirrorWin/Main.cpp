@@ -8,8 +8,6 @@
 
 #include "Main.h"
 
-static TCHAR szWindowClass[] = _T("NotificationAreaGhost");
-static TCHAR szTitle[] = _T("Notification Area Ghost");
 
 
 MainWindow* pMainWindow;
@@ -21,6 +19,10 @@ int CALLBACK WinMain(
    _In_ int       nCmdShow
 )
 {
+    
+    TCHAR szWindowClass[] = _T("SystemTrayMirror");
+    TCHAR szTitle[] = _T("SystemTray Mirror");
+
 
     MainWindow* pMW = pMainWindow = new MainWindow();
     
@@ -49,7 +51,6 @@ int CALLBACK WinMain(
         return 1;
     }
 
-    // Store instance handle in our global variable
     pMW->hInst = hInstance;
 
     HWND hWnd = CreateWindowEx(
