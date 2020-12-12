@@ -1,0 +1,3 @@
+# DO NOT change crlf anytime. 
+# I want to keep crlf even if user or tools(like git-fork) ignore user autocrlf settings.
+* -text
