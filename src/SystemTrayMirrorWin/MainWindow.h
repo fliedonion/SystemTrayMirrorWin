@@ -1,7 +1,8 @@
-﻿#pragma once
+#pragma once
 #include <windows.h>
 #include <string.h>
 #include <tchar.h>
+#include <vector>
 
 #include "ResourceId.h"
 
@@ -11,7 +12,7 @@
 // Constants
 
 #define CLOSE_BUTTON_WIDTH 32
-#define MIN_WIDTH 96
+#define MIN_WIDTH 128
 #define MIN_HEIGHT 48
 
 // vc2013 not support constexpr
@@ -26,8 +27,8 @@ public:
     MainWindow();
     ~MainWindow();
 
-    HINSTANCE hInst;
-    HWND hWnd;
+    HINSTANCE hInst {};
+    HWND hWnd {};  // hWnd = 0 / hWnd = NULL  does not work for public member.
     UINT TimerInterval = 200;
 
     // methods
@@ -41,19 +42,24 @@ public:
 
     void SetControlFonts();
     HBITMAP CaptureNotificationArea(_Out_ LPSIZEL const out_size);
+    void UpdateByTimer();
+
 
 private:
     // control handles
-    HWND hWndStatic;
-    HWND hWndCloseButton;
+    HWND hWndStatic {};
+    HWND hWndCloseButton {};
 
-    HWND hWndZoomStatic = NULL;
-    HWND hWndTopMostStatic = NULL;
-    HWND hWndCloseLockStatic = NULL;
-    HWND hWndFitRightBottomStatic = NULL;
+    // Option feature static Handles.
+    HWND hWndZoomStatic {};
+    HWND hWndTopMostStatic {};
+    HWND hWndCloseLockStatic {};
+    HWND hWndFitRightBottomStatic {};
 
     // resource handles
     HFONT hFontOptStatic, hFontDefault;
+
+    HBITMAP hbmp {};
 
     // variables
     HoverCursorHelper* pHHTopMost = NULL;
@@ -74,6 +80,12 @@ private:
     // methods
     HWND CreateOptionFeatureStatic(HWND hWndParent, LPCREATESTRUCT lpCS, HMENU idc, LPCTSTR caption, int index);
     LONG GetNotifyTrayOptionButtonWidth();
+
+    void DrawTitleBar(HWND hWndWantToUpdate, const std::vector<HWND> &staticHandles, HWND closeButton);
+    void DrawTitleBar(HDC hDCOfHWndWantToUpdate, const std::vector<HWND> &staticHandles, HWND closeButton);
+    void DrawStaticToMemoryDC(HDC destDC, HWND hwndStatic);
+
+    static RECT GetLocation(HWND hWnd);
 
 };
 

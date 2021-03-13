@@ -14,10 +14,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         {
-            if (hWnd && !pMW->hWnd) {
+            if (hWnd && pMW->hWnd == NULL) {
                 pMW->hWnd = hWnd;
                 pMW->TimerInterval = 200;
                 pMW->OnCreate(wParam, lParam);
+                pMW->UpdateByTimer();
             }
         }
         break;
@@ -30,7 +31,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 
 	case WM_TIMER:
-        InvalidateRect(hWnd, NULL, FALSE);
+        pMW->UpdateByTimer();
 		return 0;
 
     case WM_CTLCOLORSTATIC: {
@@ -40,6 +41,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         return FALSE;
 
+    case WM_ERASEBKGND:
+        // 背景の描画を処理したことにする(ちらつき防止。すべてを描画するので背景クリアの必要がない）
+			return TRUE;
+
+    case WM_NCPAINT:
+            return TRUE;
     case WM_PAINT: {
             if(hWnd == pMW->hWnd) {
                 PAINTSTRUCT ps;

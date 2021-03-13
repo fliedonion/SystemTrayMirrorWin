@@ -53,11 +53,24 @@ int CALLBACK WinMain(
 
     pMW->hInst = hInstance;
 
+    //HWND hWnd = CreateWindowEx(
+    //    WS_EX_COMPOSITED, // double buffer
+    //    szWindowClass,
+    //    szTitle,
+    //    WS_OVERLAPPEDWINDOW & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX, 
+    //    CW_USEDEFAULT, CW_USEDEFAULT,
+    //    500, 100,
+    //    NULL,
+    //    NULL,
+    //    hInstance,
+    //    NULL
+    //);
+
     HWND hWnd = CreateWindowEx(
-        WS_EX_COMPOSITED, // double buffer
+        WS_EX_COMPOSITED, // No optional style
         szWindowClass,
-        szTitle,
-        WS_OVERLAPPEDWINDOW & ~WS_MINIMIZEBOX & ~WS_MAXIMIZEBOX, 
+        L"", // No caption for no border
+        0, // No style
         CW_USEDEFAULT, CW_USEDEFAULT,
         500, 100,
         NULL,
@@ -65,6 +78,8 @@ int CALLBACK WinMain(
         hInstance,
         NULL
     );
+
+
 
     if (!hWnd)
     {
@@ -78,7 +93,8 @@ int CALLBACK WinMain(
     // pMW->hWnd = hWnd; // CreateWindowEx raise WM_CREATE. So, we pass the hWnd to pMainWindow's OnCreate method instead of here.
 
 
-    SetWindowLong(hWnd, GWL_STYLE, WS_POPUP | WS_MINIMIZEBOX);
+    // SetWindowLong(hWnd, GWL_STYLE, WS_POPUP | WS_MINIMIZEBOX);
+    SetWindowLong(hWnd, GWL_STYLE, 0);
     SetWindowLong(hWnd, GWL_EXSTYLE, 0);
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);

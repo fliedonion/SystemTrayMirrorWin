@@ -84,6 +84,8 @@
     <ClCompile Include="Main.WndProc.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="MainWindow.OptionFeatureStatic.cpp" />
+    <ClCompile Include="MainWindow.Paint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FindNotifyTrayHelper.h" />

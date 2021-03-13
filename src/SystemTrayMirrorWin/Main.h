@@ -1,9 +1,10 @@
 ﻿#pragma once
 
 #include <windows.h>
-#include <stdlib.h>
-#include <string.h>
 #include <tchar.h>
+
+#include <cstdlib>
+#include <cstring>
 
 #include "FindNotifyTrayHelper.h"
 #include "HoverCursorHelper.h"
