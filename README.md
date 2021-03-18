@@ -2,6 +2,9 @@
 
 Display mirror of system tray icons to check notification even if taskbar was hidden. Only display.
 
+It is also useful when you want to see the task tray of the connected Windows when you are using Remote Desktop in full screen mode for remote work.
+
+
 # window
 
 ![window](img/ksnip_20201212-015652.png)
@@ -17,6 +20,9 @@ This app only display icons. You can't click them.
 システムトレイ(通知領域)のアイコンと時計を表示するアプリケーションです。
 
 タスクトレイが自動で隠れる設定であったり、タスクトレイがウィンドウに隠れていても表示されます。
+
+リモートワーク等でリモートデスクトップを全画面で利用しているとき、接続元Windowsのタスクトレイが見たい場合などにも役立ちます。
+
 
 # toggle buttons
 
